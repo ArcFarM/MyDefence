@@ -8,15 +8,15 @@ namespace MyDefense {
 
         #region Fields
         float speed = 4f;
-        Vector3 targetPos;
+        Transform target;
         int index = 0;
         Vector3 dir = new Vector3(0, 0, 0);
         #endregion
 
         //
         void Start() {
-            targetPos = Get_Waypoints.waypoints[index].position;
-            dir = targetPos - transform.position;
+            target = Get_Waypoints.waypoints[index];
+            dir = target.position - transform.position;
         }
 
         //
@@ -24,10 +24,11 @@ namespace MyDefense {
             
             transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
-            if(Vector3.Distance(transform.position, targetPos) < 0.1f) {
+            if(Vector3.Distance(transform.position, target.position) < 0.1f) {
                 if (index < Get_Waypoints.waypoints.Length) {
-                    targetPos = Get_Waypoints.waypoints[++index].position;
-                    dir = targetPos - transform.position;
+                    target = Get_Waypoints.waypoints[index];
+                    dir = target.position - transform.position;
+                    index++;
                 }
                 else GameObject.Destroy(gameObject);
             }
