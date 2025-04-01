@@ -32,7 +32,7 @@ namespace MyDefense {
         }
 
         IEnumerator Spawn_Enemy() {
-            for(int i = 0; i < waveCount * 3; i++) {
+            for(int i = 0; i < waveCount; i++) {
                 Instantiate(enemy, Get_Waypoints.waypoints[0].position, Quaternion.identity);
                 yield return new WaitForSeconds(0.3f);
             }
