@@ -21,6 +21,19 @@ namespace MyDefense {
         }
         #endregion
 
-        public GameObject towerPrefab;
+        public GameObject towerToBuild;
+        public GameObject machineGunPrefab;
+
+
+
+        //타워 프리팹 얻어오기
+        public GameObject GetTowerBuild() {
+            return towerToBuild;
+        }
+
+        //타워 프리팹 저장하기
+        public void SetTowerBuild(GameObject tower) {
+            towerToBuild = tower;
+        }
     }
 }
