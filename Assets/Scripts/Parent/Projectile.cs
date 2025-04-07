@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace MyDefense {
-    public class BulletFunction : MonoBehaviour {
+    public class Projectile : MonoBehaviour {
 
         //착탄 지점
         public Transform target;
@@ -14,20 +14,24 @@ namespace MyDefense {
         void Update() {
             if(target != null) {
                 Vector3 dir = target.position - transform.position;
-                if(dir.magnitude < Time.deltaTime * velocity) {
+                Quaternion targetRotation = Quaternion.LookRotation(dir);
+                Quaternion lookRotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * velocity);
+                transform.rotation = lookRotation;
+                if (dir.magnitude < Time.deltaTime * velocity) {
                     //이번 프레임에 대상에 도달하므로
                     Target_Hit();
                     return;
                 }
                 transform.Translate(dir.normalized * velocity * Time.deltaTime, Space.World);
             } else Destroy(gameObject);
+
         }
 
         public void Set_Target(Transform _target) {
             target = _target;
         }
 
-        void Target_Hit() {
+        protected virtual void Target_Hit() {
             if (target != null) {
                 //타격 시 발생할 효과 추가
                 GameObject effectGo = Instantiate(bulletImpact, transform.position, Quaternion.identity);

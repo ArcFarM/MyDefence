@@ -305,7 +305,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300105de4501b2b45b42cae4a805d5f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerPrefab: {fileID: 77532237458086866, guid: 232c1c63d61074942abf08d8db7e45a9, type: 3}
+  towerToBuild: {fileID: 0}
+  machineGunPrefab: {fileID: 77532237458086866, guid: 232c1c63d61074942abf08d8db7e45a9, type: 3}
+  missileTowerPrefab: {fileID: 77532237458086866, guid: ec52e79551ca8d2428275c9536cda01c, type: 3}
 --- !u!4 &176528104
 Transform:
   m_ObjectHideFlags: 0
@@ -1064,6 +1066,7 @@ GameObject:
   - component: {fileID: 648855309}
   - component: {fileID: 648855308}
   - component: {fileID: 648855307}
+  - component: {fileID: 648855311}
   m_Layer: 5
   m_Name: MGButton
   m_TagString: Untagged
@@ -1154,7 +1157,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 648855309}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 648855311}
+        m_TargetAssemblyTypeName: MyDefense.BuildMenu, Assembly-CSharp
+        m_MethodName: MGButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &648855309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,6 +1208,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648855305}
   m_CullTransparentMesh: 1
+--- !u!114 &648855311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648855305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938e616d379ed70498a51bc9e4a07b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &739275403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,6 +1887,7 @@ GameObject:
   - component: {fileID: 2014536639}
   - component: {fileID: 2014536638}
   - component: {fileID: 2014536637}
+  - component: {fileID: 2014536641}
   m_Layer: 5
   m_Name: MissileButton
   m_TagString: Untagged
@@ -1950,7 +1978,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2014536639}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2014536641}
+        m_TargetAssemblyTypeName: MyDefense.BuildMenu, Assembly-CSharp
+        m_MethodName: MissileButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2014536639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1989,6 +2029,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014536635}
   m_CullTransparentMesh: 1
+--- !u!114 &2014536641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014536635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938e616d379ed70498a51bc9e4a07b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2047778188
 GameObject:
   m_ObjectHideFlags: 0
