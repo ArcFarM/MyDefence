@@ -922,6 +922,7 @@ GameObject:
   - component: {fileID: 576569089}
   - component: {fileID: 576569091}
   - component: {fileID: 576569090}
+  - component: {fileID: 576569092}
   m_Layer: 5
   m_Name: BuildMenu
   m_TagString: Untagged
@@ -988,6 +989,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576569088}
   m_CullTransparentMesh: 1
+--- !u!114 &576569092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576569088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 938e616d379ed70498a51bc9e4a07b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machinegunTower:
+    towerPrefab: {fileID: 77532237458086866, guid: 232c1c63d61074942abf08d8db7e45a9, type: 3}
+    towerCost: 100
+  missileTower:
+    towerPrefab: {fileID: 77532237458086866, guid: ec52e79551ca8d2428275c9536cda01c, type: 3}
+    towerCost: 250
 --- !u!1 &597070675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,6 +1239,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938e616d379ed70498a51bc9e4a07b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machinegunTower:
+    towerPrefab: {fileID: 0}
+    towerCost: 0
+  missileTower:
+    towerPrefab: {fileID: 0}
+    towerCost: 0
 --- !u!1 &739275403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,6 +2066,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938e616d379ed70498a51bc9e4a07b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  machinegunTower:
+    towerPrefab: {fileID: 0}
+    towerCost: 0
+  missileTower:
+    towerPrefab: {fileID: 0}
+    towerCost: 0
 --- !u!1 &2047778188
 GameObject:
   m_ObjectHideFlags: 0

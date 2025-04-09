@@ -3,13 +3,17 @@ using UnityEngine;
 
 namespace MyDefense {
     public class BuildMenu : MonoBehaviour {
-        public static void MGButton() {
-            //BuildManager의 tower
-            BuildManager.Instance.SetTowerBuild(BuildManager.Instance.machineGunPrefab);
+
+        #region Fields
+        public TowerBluePrint machinegunTower;
+        public TowerBluePrint missileTower;
+        #endregion
+        public void MGButton() {
+            BuildManager.Instance.SetTowerBuild(machinegunTower.towerPrefab);
         }
 
-        public static void MissileButton() {
-            BuildManager.Instance.SetTowerBuild(BuildManager.Instance.missileTowerPrefab);
+        public void MissileButton() {
+            BuildManager.Instance.SetTowerBuild(missileTower.towerPrefab);
         }
     }
 

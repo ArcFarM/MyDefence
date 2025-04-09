@@ -22,8 +22,6 @@ namespace MyDefense {
         #endregion
 
         public GameObject towerToBuild;
-        public GameObject machineGunPrefab;
-        public GameObject missileTowerPrefab;
 
         //타워 프리팹 얻어오기
         public GameObject GetTowerBuild() {
