@@ -136,8 +136,10 @@ MonoBehaviour:
   target: {fileID: 0}
   velocity: 10
   bulletImpact: {fileID: 3141582918291626884, guid: 88112c5e0ee3a444ebfe7023f2f80698, type: 3}
+  dmg: 50
   dmgRadius: 3.5
   targetTag: Enemy
+  dmg_val: 150
 --- !u!1 &6700833999893737125
 GameObject:
   m_ObjectHideFlags: 0

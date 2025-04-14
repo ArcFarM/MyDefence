@@ -10,7 +10,7 @@ namespace MyDefense {
         public float attackRange = 7f;
         //추적할 게임 오브젝트의 태그
         public string TagtoFind = "Enemy";
-        Transform target;
+        protected Transform target;
 
         //터렛 헤드 회전
         public Transform partToRotate;
@@ -21,16 +21,23 @@ namespace MyDefense {
         public Transform firePoint;
 
         //발사 타이머
-        public float timer = 1f;
-        float timer_set;
+        protected float timer = 1f;
+        public float timer_set;
+
+        //적 추적 타이머
+        protected float targetTimer;
+        public float targetTimer_init = 0.5f;
+
         #endregion
         void Start() {
             timer_set = timer;
+            targetTimer = targetTimer_init;
+            InvokeRepeating("UpdateTarget", 0, targetTimer);
         }
-        void Update() {
+        protected virtual void Update() {
             //타이머 구현 방법 2. InvokeRepeating
             //인자 1(반복할 대상)을 인자 2(지연 시간)만큼 대기했다가 인자 3(반복 주기)초 마다 실행함
-            InvokeRepeating("UpdateTarget", 0, 0.5f);
+
             Find_and_Rotate();
 
             timer -= Time.deltaTime;
@@ -42,18 +49,20 @@ namespace MyDefense {
         }
 
         //타워가 적을 발견하여 추적
-        void Find_and_Rotate() {
+        protected void Find_and_Rotate() {
             if (target == null) {
                 UpdateTarget();
                 return;
             }
-            Vector3 dir = target.position - transform.position;
-            Quaternion targetRotation = Quaternion.LookRotation(dir);
+
+            //partToRotate.LookAt(target.position); //타겟을 바라보게 함
+             Vector3 dir = target.position - transform.position;
+             Quaternion targetRotation = Quaternion.LookRotation(dir);
             Quaternion lookRotation = Quaternion.Lerp(partToRotate.rotation, targetRotation, Time.deltaTime * turnSpeed);
             partToRotate.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
         }
         //타워가 매초 공격을 실시함
-        void Tower_Attack() {
+        protected void Tower_Attack() {
             if (target == null) {
                 return;
             }
@@ -62,7 +71,7 @@ namespace MyDefense {
             }
         }
 
-        void Shoot_Bullet() {
+        protected void Shoot_Bullet() {
             //총알을 생성하고 발사
             Instantiate(bullet, firePoint.position, Quaternion.identity);
             Projectile bullet_bf = bullet.GetComponent<Projectile>();
@@ -80,7 +89,7 @@ namespace MyDefense {
             yield return new WaitForSeconds(0.5f);
         }
 
-        void UpdateTarget() {
+        protected void UpdateTarget() {
             GameObject[] Enemies = GameObject.FindGameObjectsWithTag(TagtoFind);
 
             float min_dist = float.MaxValue;

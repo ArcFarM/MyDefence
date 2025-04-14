@@ -7,7 +7,18 @@ namespace MyDefense {
     public class EnemyControl : MonoBehaviour {
 
         #region Fields
-        float speed = 4f;
+        //적 스탯
+        float speed;
+        [SerializeField] float init_speed = 4f;
+        [SerializeField] float init_health = 100f;
+        [SerializeField] int reward = 50;
+        float health;
+        
+        //사망 시 출력할 이펙트
+        public GameObject deathEffect;
+        GameObject effectDummy;
+
+        //적 이동 경로 관련
         Transform target;
         int index = 0;
         Vector3 dir = new Vector3(0, 0, 0);
@@ -17,6 +28,8 @@ namespace MyDefense {
         void Start() {
             target = Get_Waypoints.waypoints[index];
             dir = target.position - transform.position;
+            health = init_health;
+            speed = init_speed;
         }
 
         //
@@ -30,8 +43,37 @@ namespace MyDefense {
                     dir = target.position - transform.position;
                     index++;
                 }
-                else GameObject.Destroy(gameObject);
+                else {
+                    //종점 도착 시 라이프 감소
+                    PlayerStats.LoseLife(1);
+                    Destroy(gameObject);
+                }
+
             }
+        }
+
+        public void TakeDamage(float damage) {
+            health -= damage;
+            Debug.Log("현재 체력 : " + health);
+            if (health <= 0) {
+                //사망 이펙트 출력
+                effectDummy = Instantiate(deathEffect, transform.position, Quaternion.identity);
+                Destroy(effectDummy, 2f); //2초 후 이펙트 삭제
+                //적 오브젝트 삭제
+                Kill(this.gameObject);
+            }
+        }
+         void Kill(GameObject enemy) {
+           PlayerStats.GainMoney(reward);
+           Destroy(enemy);
+         }
+         
+        public void SetSpeed(float val) {
+            speed = val;
+        }
+
+        public float GetInitSpeed() {
+            return init_speed;
         }
     }
 }
