@@ -9,5 +9,8 @@ namespace MyDefence {
     public class TowerBluePrint {
         public GameObject towerPrefab;
         public int towerCost;
+
+        public GameObject upgradePrefab;
+        public int upgradeCost;
     }
 }

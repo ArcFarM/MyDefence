@@ -25,6 +25,11 @@ namespace MyDefence {
             get { return waveNumber; }
             set { waveNumber = value; }
         }
+
+        public static bool CheckMoney(float amount) {
+            if (money >= amount) return true;
+            return false;
+        }
         #endregion
 
         private void Start() {
@@ -34,23 +39,24 @@ namespace MyDefence {
         }
         public static void GainMoney(int amount) {
             money += amount;
-            Debug.Log("Gain Money: " + amount);
-            Debug.Log("Current Money: " + money);
+            //Debug.Log("Gain Money: " + amount);
+            //Debug.Log("Current Money: " + money);
         }
         public static void SpendMoney(int amount) {
             money -= amount;
-            Debug.Log("Spend Money: " + amount);
-            Debug.Log("Current Money: " + money);
+            //Debug.Log("Spend Money: " + amount);
+            //Debug.Log("Current Money: " + money);
         }
+        
         public static void GainLife(int amount) {
             life += amount;
-            Debug.Log("Gain Life: " + amount);
-            Debug.Log("Current Life: " + life);
+            //Debug.Log("Gain Life: " + amount);
+            //Debug.Log("Current Life: " + life);
         }
         public static void LoseLife(int amount) {
             life -= amount;
-            Debug.Log("Lose Life: " + amount);
-            Debug.Log("Current Life: " + life);
+           // Debug.Log("Lose Life: " + amount);
+           // Debug.Log("Current Life: " + life);
         }
     }
 

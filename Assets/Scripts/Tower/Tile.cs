@@ -35,10 +35,11 @@ namespace MyDefence {
         private void OnMouseEnter() {
             //타일위에 UI가 있거나, 타워 설치하는 것이 아닌 경우 활성화되지 않아야함
             if(EventSystem.current.IsPointerOverGameObject()) return;
-            if (!bm.CheckMoney) {
+            if (!bm.CannotBuild && !bm.CheckMoney) {
                 renderer.material = cannotMat;
+                return;
             }
-            else if(!bm.CannotBuild) renderer.material = filledMat;
+            renderer.material = filledMat;
         }
 
         private void OnMouseExit() {
@@ -48,15 +49,33 @@ namespace MyDefence {
         }
 
         private void OnMouseDown() {
+
+            if (tower != null) {
+                bm.SetTowerBuild(null);
+                //타워가 존재하는 경우 UI를 보여준다
+                Debug.Log("Run bm.Selecttile");
+                bm.SelectTile(this);
+
+                return;
+            }
+
+            //타워를 지을 돈이 없는 경우 설치하지 않음
+            if (!bm.CheckMoney) {
+                bm.SetTowerBuild(null);
+                return;
+            }
+
             //타일위에 UI가 있거나, 타워 프리팹이 할당되지 않았거나, 타워가 존재하는 경우 설치하지 않음
-            if (EventSystem.current.IsPointerOverGameObject() || bm.CannotBuild
-                || tower != null || !bm.CheckMoney) {
+            if (EventSystem.current.IsPointerOverGameObject()) { 
+                bm.SetTowerBuild(null);
+                return;
+            }
+            if (bm.CannotBuild) { 
                 bm.SetTowerBuild(null);
                 return;
             }
 
             BuildTower();
-            
         }
 
         void BuildTower() {
@@ -68,6 +87,25 @@ namespace MyDefence {
             //타워 설치 후 타워 프리팹 초기화
             bm.SetTowerBuild(null);
             //효과 표시 후 삭제
+            GameObject dummyEffect = Instantiate(buildEffect, transform.position, Quaternion.identity);
+            Destroy(dummyEffect, 2f);
+        }
+
+        public void UpgradeTower() {
+            //업그레이드할 타워 정보 받아오기
+            TowerBluePrint tb = bm.GetTowerBuild();
+            //타워 업그레이드 가능 여부 체크
+            if (tower == null || tb.upgradePrefab == null || PlayerStats.CheckMoney(tb.upgradeCost)) {
+                Debug.Log("업그레이드 불가");
+                return;
+            }
+
+            //타워 가격만큼 차감
+            PlayerStats.SpendMoney(tb.towerCost);
+            //기존 타워 철거 및 타워 설치
+            Destroy(tower);
+            tower = Instantiate(tb.towerPrefab, transform.position, Quaternion.identity);
+            //업그레이드 효과
             GameObject dummyEffect = Instantiate(buildEffect, transform.position, Quaternion.identity);
             Destroy(dummyEffect, 2f);
         }

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 
@@ -5,20 +6,26 @@ namespace MyDefence {
     public class BuildMenu : MonoBehaviour {
 
         #region Fields
-        public TowerBluePrint machinegunTower;
-        public TowerBluePrint missileTower;
-        public TowerBluePrint laserTower;
+        enum Lv1Towers {machinegun, missile, laser};
+
+        public TowerBluePrint[] lv1towers;
+
+        BuildManager bm;
+
+        private void Start() {
+            bm = BuildManager.Instance;
+        }
         #endregion
         public void MGButton() {
-            BuildManager.Instance.SetTowerBuild(machinegunTower);
+            bm.SetTowerBuild(lv1towers[(int)Lv1Towers.machinegun]);
         }
 
         public void MissileButton() {
-            BuildManager.Instance.SetTowerBuild(missileTower);
+            bm.SetTowerBuild(lv1towers[(int)Lv1Towers.missile]);
         }
 
         public void LaserButton() {
-            BuildManager.Instance.SetTowerBuild(laserTower);
+            bm.SetTowerBuild(lv1towers[(int)Lv1Towers.laser]);
         }
     }
 

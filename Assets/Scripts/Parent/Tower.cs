@@ -28,7 +28,12 @@ namespace MyDefence {
         protected float targetTimer;
         public float targetTimer_init = 0.5f;
 
+        //업그레이드 가능 여부
+        protected bool isUpgradable = true;
+        //자신을 업그레이드 한 결과물
+        [SerializeField] protected TowerBluePrint upgradeResult;
         #endregion
+
         void Start() {
             timer_set = timer;
             targetTimer = targetTimer_init;

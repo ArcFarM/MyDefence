@@ -9,17 +9,25 @@ namespace MyDefence {
             Time.timeScale = 0f;
         }
 
+        private void OnDisable() {
+            Time.timeScale = 1f;
+        }
+        
+
         public void Resume() {
-            gameObject.SetActive(false);
+            Toggle(); 
         }
 
         public void RestartGame() {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            Time.timeScale = 1f;
         }
 
         public void GoMainMenu() {
             //
+        }
+
+        void Toggle() {
+            gameObject.SetActive(!gameObject.activeSelf);
         }
     }
 

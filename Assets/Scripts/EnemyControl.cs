@@ -54,7 +54,7 @@ namespace MyDefence {
 
         public void TakeDamage(float damage) {
             health -= damage;
-            Debug.Log("현재 체력 : " + health);
+            //Debug.Log("현재 체력 : " + health);
             if (health <= 0) {
                 //사망 이펙트 출력
                 effectDummy = Instantiate(deathEffect, transform.position, Quaternion.identity);
