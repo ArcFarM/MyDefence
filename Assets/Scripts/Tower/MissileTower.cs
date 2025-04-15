@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace MyDefense {
+namespace MyDefence {
     public class MissileTower : Tower {
 
     }

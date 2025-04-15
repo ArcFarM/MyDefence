@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-namespace MyDefense {
+namespace MyDefence {
     public class BuildManager : MonoBehaviour {
         static BuildManager instance;
 

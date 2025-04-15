@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace MyDefense {
+namespace MyDefence {
     public class BuildMenu : MonoBehaviour {
 
         #region Fields

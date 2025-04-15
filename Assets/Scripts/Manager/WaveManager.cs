@@ -4,7 +4,7 @@ using TMPro;
 
 //적 스포너
 
-namespace MyDefense {
+namespace MyDefence {
     public class WaveManager : MonoBehaviour {
 
         //소환할 적
@@ -22,10 +22,14 @@ namespace MyDefense {
 
         // Update is called once per frame
         void Update() {
+            if(GameManager.IsGameOver) {
+                return;
+            }
             countdown += Time.deltaTime;
             waveCountText.text = ((int)(waveTimer - countdown)).ToString();
             if (countdown >= waveTimer) {
                 waveCount++;
+                PlayerStats.WaveNumber++;
                 countdown = 0f;
                 StartCoroutine(Spawn_Enemy());
             }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MyDefense {
+namespace MyDefence {
     public class Projectile : MonoBehaviour {
 
         //착탄 지점

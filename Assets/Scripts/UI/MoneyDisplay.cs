@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-namespace MyDefense {
+namespace MyDefence {
     public class MoneyDisplay : MonoBehaviour {
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         public TextMeshProUGUI moneyText;

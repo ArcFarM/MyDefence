@@ -1,13 +1,16 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace MyDefense {
+namespace MyDefence {
     public class PlayerStats : MonoBehaviour {
         #region Fields
         [SerializeField] int initMoney = 400;
         [SerializeField] int initLife = 10;
         static int money = 0;
         static int life = 0;
+        static int waveNumber = 0;
         #endregion
 
         //읽기 전용 속성
@@ -18,11 +21,16 @@ namespace MyDefense {
         public static int Life {
             get { return life; }
         }
+        public static int WaveNumber {
+            get { return waveNumber; }
+            set { waveNumber = value; }
+        }
         #endregion
 
         private void Start() {
             money = initMoney;
             life = initLife;
+            waveNumber = 0;
         }
         public static void GainMoney(int amount) {
             money += amount;
@@ -43,13 +51,6 @@ namespace MyDefense {
             life -= amount;
             Debug.Log("Lose Life: " + amount);
             Debug.Log("Current Life: " + life);
-
-            if(life <= 0) {
-                //게임 오버 처리
-                Debug.Log("Game Over");
-                //게임 오버 UI 활성화
-                //SceneManager.LoadScene("GameOver");
-            }
         }
     }
 

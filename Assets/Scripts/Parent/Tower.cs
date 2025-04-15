@@ -2,7 +2,7 @@ using System.Collections;
 using System.Threading;
 using UnityEngine;
 
-namespace MyDefense {
+namespace MyDefence {
     public class Tower : MonoBehaviour {
 
         #region fields

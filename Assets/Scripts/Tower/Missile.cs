@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MyDefense {
+namespace MyDefence {
     public class Missile : Projectile {
         //공격 범위
         public float dmgRadius = 3.5f;

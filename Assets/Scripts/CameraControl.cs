@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MyDefense {
+namespace MyDefence {
     public class CameraControl : MonoBehaviour {
         #region fields
         //카메라 전후좌우 이동 속도
@@ -16,7 +16,10 @@ namespace MyDefense {
         #endregion
 
         private void Update() {
-            if(Input.GetKeyDown(KeyCode.Escape)) {
+            if(GameManager.IsGameOver) {
+                return;
+            }
+            if (Input.GetKeyDown(KeyCode.Escape)) {
                 canMove = !canMove;
             }
 

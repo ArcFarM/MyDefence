@@ -140,7 +140,7 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
 --- !u!114 &502049799173192529
@@ -167,6 +167,7 @@ MonoBehaviour:
   laserImpact: {fileID: 9009266460037706885}
   laserLight: {fileID: 8263123685254796909}
   damage: 15
+  slowEffect: 0.4
 --- !u!1 &2299221935791351861
 GameObject:
   m_ObjectHideFlags: 0

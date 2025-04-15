@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MyDefense {
+namespace MyDefence {
     public class Get_Waypoints : MonoBehaviour {
         #region
         public static Transform[] waypoints;

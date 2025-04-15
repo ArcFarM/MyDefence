@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-namespace MyDefense {
+namespace MyDefence {
 
     public class EnemyControl : MonoBehaviour {
 

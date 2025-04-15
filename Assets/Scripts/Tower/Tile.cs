@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace MyDefense {
+namespace MyDefence {
     public class Tile : MonoBehaviour {
 
         //구분용 머터리얼
