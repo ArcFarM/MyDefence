@@ -147,7 +147,7 @@ RectTransform:
   m_GameObject: {fileID: 20061763}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1706155872}
@@ -711,7 +711,9 @@ MonoBehaviour:
     towerCost: 0
     upgradePrefab: {fileID: 0}
     upgradeCost: 0
+    towerLevel: 0
   tileUI: {fileID: 1873652482}
+  tile: {fileID: 0}
 --- !u!4 &176528104
 Transform:
   m_ObjectHideFlags: 0
@@ -887,7 +889,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 203297216}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1873652482}
+        m_TargetAssemblyTypeName: MyDefence.TileUI, Assembly-CSharp
+        m_MethodName: SellTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &203297216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2507,17 +2521,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lv1towers:
   - towerPrefab: {fileID: 77532237458086866, guid: 232c1c63d61074942abf08d8db7e45a9, type: 3}
-    towerCost: 100
+    towerCost: 50
     upgradePrefab: {fileID: 239990773664640163, guid: f717dc3725b5e6840b50bb4f103c5335, type: 3}
     upgradeCost: 50
+    towerLevel: 1
   - towerPrefab: {fileID: 77532237458086866, guid: ec52e79551ca8d2428275c9536cda01c, type: 3}
     towerCost: 250
-    upgradePrefab: {fileID: 0}
-    upgradeCost: 0
+    upgradePrefab: {fileID: 4527958993268810879, guid: c2e4a3364c6887d448ff5f588fd61599, type: 3}
+    upgradeCost: 150
+    towerLevel: 1
   - towerPrefab: {fileID: 1483606637597860306, guid: 89957d38499b9fc41a451642dc5b50c6, type: 3}
     towerCost: 350
+    upgradePrefab: {fileID: 1607882018030788091, guid: 9e3bc3ca9c0b2e34ebfb3d8705e25481, type: 3}
+    upgradeCost: 250
+    towerLevel: 1
+  lv2towers:
+  - towerPrefab: {fileID: 239990773664640163, guid: f717dc3725b5e6840b50bb4f103c5335, type: 3}
+    towerCost: 100
     upgradePrefab: {fileID: 0}
     upgradeCost: 0
+    towerLevel: 0
+  - towerPrefab: {fileID: 4527958993268810879, guid: c2e4a3364c6887d448ff5f588fd61599, type: 3}
+    towerCost: 400
+    upgradePrefab: {fileID: 0}
+    upgradeCost: 0
+    towerLevel: 0
+  - towerPrefab: {fileID: 1607882018030788091, guid: 9e3bc3ca9c0b2e34ebfb3d8705e25481, type: 3}
+    towerCost: 600
+    upgradePrefab: {fileID: 0}
+    upgradeCost: 0
+    towerLevel: 0
+  towerlist:
+  - {fileID: 648855305}
+  - {fileID: 2014536635}
+  - {fileID: 1773211325}
 --- !u!1 &597070675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2628,7 +2665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91c23eaa455a604abf069646843c1fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveNumber: {fileID: 0}
+  waveNumber: {fileID: 1336174405}
 --- !u!1 &640786972
 GameObject:
   m_ObjectHideFlags: 0
@@ -6567,7 +6604,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {fileID: 782307151}
-  upCost: {fileID: 0}
+  selectedTile: {fileID: 0}
+  upButton: {fileID: 871539312}
+  upCost: {fileID: 241766550}
+  resoureImage: {fileID: 1369499299}
+  sellPrice: {fileID: 1921360509}
 --- !u!1 &1881181187
 GameObject:
   m_ObjectHideFlags: 0

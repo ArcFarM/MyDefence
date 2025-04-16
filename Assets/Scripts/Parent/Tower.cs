@@ -28,10 +28,15 @@ namespace MyDefence {
         protected float targetTimer;
         public float targetTimer_init = 0.5f;
 
-        //업그레이드 가능 여부
-        protected bool isUpgradable = true;
-        //자신을 업그레이드 한 결과물
-        [SerializeField] protected TowerBluePrint upgradeResult;
+        //타워 등급
+        protected int towerLevel = 1;
+        public int TowerLevel {
+            get { return towerLevel; }
+            set { towerLevel = value; }
+        }
+
+        //타워에 붙을 청사진
+        public TowerBluePrint towerBluePrint;
         #endregion
 
         void Start() {
@@ -113,6 +118,10 @@ namespace MyDefence {
                 target = null;
                 return;
             }
+        }
+
+        public int GetTowerLevel() {
+            return towerLevel;
         }
     }
 }

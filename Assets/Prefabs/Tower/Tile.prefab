@@ -124,4 +124,10 @@ MonoBehaviour:
   defaultMat: {fileID: 2100000, guid: 9abaf36c0c8866d4f8dccd9a3aa3974f, type: 2}
   filledMat: {fileID: 2100000, guid: 58f9b34830d59d348aff9b054599c8ff, type: 2}
   cannotMat: {fileID: 2100000, guid: ac2a896f2a04a6f4a83ca3920c337ec7, type: 2}
+  tb:
+    towerPrefab: {fileID: 0}
+    towerCost: 0
+    upgradePrefab: {fileID: 0}
+    upgradeCost: 0
   buildEffect: {fileID: 8689288804075613329, guid: e8c091b0c7b4f5843b463f38984883ff, type: 3}
+  sellEffect: {fileID: 8689288804075613329, guid: 135c0bb62f0d6a249b3c424e13bbcd0a, type: 3}

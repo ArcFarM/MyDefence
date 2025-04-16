@@ -12,5 +12,22 @@ namespace MyDefence {
 
         public GameObject upgradePrefab;
         public int upgradeCost;
+        public int towerLevel;
+
+        public float GetSellValue() {
+            float result = towerCost / 2;
+            for(int i = 1; i < towerLevel; i++) {
+                result += upgradeCost / 2;
+            }
+            return result;
+        }
+
+        int maxLevel = 2;
+        public bool IsMaxLevel() {
+            if (towerLevel >= maxLevel) {
+                return true;
+            }
+            return false;
+        }
     }
 }

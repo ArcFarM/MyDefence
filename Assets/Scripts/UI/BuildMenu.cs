@@ -1,4 +1,5 @@
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 
@@ -9,11 +10,20 @@ namespace MyDefence {
         enum Lv1Towers {machinegun, missile, laser};
 
         public TowerBluePrint[] lv1towers;
+        public TowerBluePrint[] lv2towers;
+        public GameObject[] towerlist;
 
         BuildManager bm;
 
         private void Start() {
             bm = BuildManager.Instance;
+
+            int index = 0;
+            foreach(GameObject go in towerlist) {
+                go.GetComponentInChildren<TextMeshProUGUI>().text
+                     = lv1towers[index].towerCost.ToString();
+                index++;
+            }
         }
         #endregion
         public void MGButton() {

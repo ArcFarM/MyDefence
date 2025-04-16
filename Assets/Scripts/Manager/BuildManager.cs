@@ -59,20 +59,12 @@ namespace MyDefence {
         }
 
         public void SelectTile(Tile t) {
-            Debug.Log("is tile == t?");
+            //Debug.Log("is tile == t?");
             //같은 타일 선택 시 선택 해제
-            if (tile == t) {
-                UnselectTile();
-                return;
-            }
 
             tile = t;
-            Debug.Log("run showthis");
-            tileUI.ShowThis(t);
-        }
-
-        public void UnselectTile() {
-            tileUI.HideThis();
+            //Debug.Log("run showthis");
+            tileUI.ToggleThis(t);
         }
     }
 }
