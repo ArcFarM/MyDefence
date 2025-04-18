@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using MyDefence;
 
 public class TitleScene : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class TitleScene : MonoBehaviour
     public float blinkTimer;
     //깜빡일 글자
     public TextMeshProUGUI titleText;
+    //한번만 작동하기 위한 Flag
+    bool switchFlag = false;
+
+    //화면 전환 시 페이드 아웃할 패널
+    public FadeInOut fadeOutPanel;
 
     //코루틴
     IEnumerator blinkCoroutine;
@@ -22,7 +28,7 @@ public class TitleScene : MonoBehaviour
     {
         //글자 투명화
         titleText.color = new Color(titleText.color.r, titleText.color.g, titleText.color.b, 0);
-        StartCoroutine(LoadScene());
+        StartCoroutine(ForceLoadScene());
         StartCoroutine(StartBlink());
     }
 
@@ -30,10 +36,10 @@ public class TitleScene : MonoBehaviour
         if (anykey) {
             //press anykey가 활성화되면 어떤 키를 눌러도 씬 활성화
             //Debug.Log("anykey activated");
-            if (Input.anyKeyDown) {
-                StopAllCoroutines();
+            if (Input.anyKeyDown && !switchFlag) {
+                switchFlag = true;
                 Debug.Log("LoadScene");
-                SceneManager.LoadScene("MainMenu");
+                StartCoroutine(LoadScene());
             }
             //글자 깜빡임 + 불필요한 호출 제거
             if (blinkCoroutine == null) {
@@ -75,9 +81,28 @@ public class TitleScene : MonoBehaviour
         Debug.Log("StartBlink");
     }
     IEnumerator LoadScene() {
-        yield return new WaitForSeconds(timer + anykeyLoader);
         Debug.Log("LoadScene");
-        StopAllCoroutines();
+        //페이드 아웃 패널 활성화
+        fadeOutPanel.gameObject.SetActive(true);
+        //페이드 아웃 애니메이션 시작
+        yield return StartCoroutine(fadeOutPanel.Do_FadeOut());
+
+        SceneManager.LoadScene("MainMenu");
+        //완료 대기 후 화면 전환
+        yield return null;
+    }
+
+    IEnumerator ForceLoadScene() {
+        //정해진 시간이 지나면 강제 시작
+        yield return new WaitForSeconds(timer + anykeyLoader);
+        //페이드 아웃 패널 활성화
+        fadeOutPanel.gameObject.SetActive(true);
+        //페이드 아웃 애니메이션 시작
+        fadeOutPanel.Do_FadeOut();
+        while (fadeOutPanel.gameObject.activeSelf) {
+            yield return null;
+        }
+        //완료 대기 후 화면 전환
         SceneManager.LoadScene("MainMenu");
     }
 }

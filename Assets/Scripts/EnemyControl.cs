@@ -24,6 +24,13 @@ namespace MyDefence {
         Vector3 dir = new Vector3(0, 0, 0);
         #endregion
 
+        public float Get_Health {
+            get { return health; }
+        }
+        public float Max_Health {
+            get { return init_health; }
+        }
+
         //
         void Start() {
             target = Get_Waypoints.waypoints[index];
