@@ -85,9 +85,7 @@ public class TitleScene : MonoBehaviour
         //페이드 아웃 패널 활성화
         fadeOutPanel.gameObject.SetActive(true);
         //페이드 아웃 애니메이션 시작
-        yield return StartCoroutine(fadeOutPanel.Do_FadeOut());
-
-        SceneManager.LoadScene("MainMenu");
+        yield return StartCoroutine(fadeOutPanel.Do_FadeOut("MainMenu"));
         //완료 대기 후 화면 전환
         yield return null;
     }
@@ -98,11 +96,6 @@ public class TitleScene : MonoBehaviour
         //페이드 아웃 패널 활성화
         fadeOutPanel.gameObject.SetActive(true);
         //페이드 아웃 애니메이션 시작
-        fadeOutPanel.Do_FadeOut();
-        while (fadeOutPanel.gameObject.activeSelf) {
-            yield return null;
-        }
-        //완료 대기 후 화면 전환
-        SceneManager.LoadScene("MainMenu");
+        fadeOutPanel.Do_FadeOut("MainMenu");
     }
 }

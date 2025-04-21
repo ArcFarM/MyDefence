@@ -53,6 +53,7 @@ namespace MyDefence {
                 else {
                     //종점 도착 시 라이프 감소
                     PlayerStats.LoseLife(1);
+                    WaveManager.enemyCount--;
                     Destroy(gameObject);
                 }
 
@@ -67,12 +68,13 @@ namespace MyDefence {
                 effectDummy = Instantiate(deathEffect, transform.position, Quaternion.identity);
                 Destroy(effectDummy, 2f); //2초 후 이펙트 삭제
                 //적 오브젝트 삭제
-                Kill(this.gameObject);
+                Kill(gameObject);
             }
         }
          void Kill(GameObject enemy) {
            PlayerStats.GainMoney(reward);
-           Destroy(enemy);
+            WaveManager.enemyCount--;
+            Destroy(enemy);
          }
          
         public void SetSpeed(float val) {

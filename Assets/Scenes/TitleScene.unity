@@ -1155,6 +1155,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1865258095778254296, guid: 121f605734504d84bb58aed2a6088156, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6201130884273053655, guid: 121f605734504d84bb58aed2a6088156, type: 3}
       propertyPath: m_Name
       value: FadeInOut
