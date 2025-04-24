@@ -29,6 +29,7 @@ namespace MyDefence {
                 selectedTile = t;
                 transform.position = t.transform.position;
                 gameObject.SetActive(true);
+                upButton.interactable = true;
 
                 //업그레이드가 불가능한 타워라면 업그레이드 버튼 비활성화
                 if (!t.GetTb().IsUnityNull()) {
@@ -41,7 +42,7 @@ namespace MyDefence {
                         }
                     }
                     //자원이 있어도 업그레이드가 불가능하면 버튼 비활성화
-                    if (tb.IsMaxLevel()) {
+                    if (t.GetTower().TowerLevel >= t.GetTower().MaxLevel) {
                         upCost.text = "Complete";
                         upButton.interactable = false;
                         resoureImage.gameObject.SetActive(false);
@@ -55,7 +56,7 @@ namespace MyDefence {
                         }
                     }
                     //판매가 표시
-                    sellPrice.text = tb.GetSellValue().ToString();
+                    sellPrice.text = t.GetSellValue().ToString();
                 }
 
 

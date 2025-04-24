@@ -14,12 +14,14 @@ namespace MyDefence {
         }
         public void QuitGame() {
             flag = false;
+            PlayerPrefs.SetInt("PlayableLevel", PlayerStats.GetBestLevel);
+            PlayerPrefs.Save();
             StartCoroutine(LoadScene());
         }
 
         IEnumerator LoadScene() {
             //페이드 아웃 애니메이션 시작
-            if(flag) yield return StartCoroutine(fadeOutPanel.Do_FadeOut("PlayScene"));
+            if(flag) yield return StartCoroutine(fadeOutPanel.Do_FadeOut("StageSelect"));
             else {
                 yield return StartCoroutine(fadeOutPanel.Do_FadeOut(null));
             }

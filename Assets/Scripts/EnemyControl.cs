@@ -18,6 +18,11 @@ namespace MyDefence {
         public GameObject deathEffect;
         GameObject effectDummy;
 
+        //도착 시 출력할 이펙트
+        public GameObject arriveEffect;
+        GameObject arriveDummy;
+        public bool isArrive = false;
+
         //적 이동 경로 관련
         Transform target;
         int index = 0;
@@ -52,6 +57,7 @@ namespace MyDefence {
                 }
                 else {
                     //종점 도착 시 라이프 감소
+                    isArrive = true;
                     PlayerStats.LoseLife(1);
                     WaveManager.enemyCount--;
                     Destroy(gameObject);

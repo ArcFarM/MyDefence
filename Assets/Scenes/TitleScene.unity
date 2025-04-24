@@ -1159,6 +1159,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4673705559149591277, guid: 121f605734504d84bb58aed2a6088156, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6201130884273053655, guid: 121f605734504d84bb58aed2a6088156, type: 3}
       propertyPath: m_Name
       value: FadeInOut

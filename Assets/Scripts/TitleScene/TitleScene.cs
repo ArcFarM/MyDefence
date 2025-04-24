@@ -26,8 +26,15 @@ public class TitleScene : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //글자 투명화
-        titleText.color = new Color(titleText.color.r, titleText.color.g, titleText.color.b, 0);
+        //게임 시작 시 플레이어 레벨이 없다면 1로 설정
+        if (!PlayerPrefs.HasKey("PlayableLevel")) { 
+            PlayerPrefs.SetInt("PlayableLevel", 1);
+            PlayerPrefs.Save();
+        } else {
+            PlayerPrefs.SetInt("PlayableLevel", Mathf.Max(PlayerPrefs.GetInt("PlayableLevel"), 1));
+        }
+            //글자 투명화
+            titleText.color = new Color(titleText.color.r, titleText.color.g, titleText.color.b, 0);
         StartCoroutine(ForceLoadScene());
         StartCoroutine(StartBlink());
     }
@@ -96,6 +103,6 @@ public class TitleScene : MonoBehaviour
         //페이드 아웃 패널 활성화
         fadeOutPanel.gameObject.SetActive(true);
         //페이드 아웃 애니메이션 시작
-        fadeOutPanel.Do_FadeOut("MainMenu");
+        StartCoroutine(fadeOutPanel.Do_FadeOut("MainMenu"));
     }
 }

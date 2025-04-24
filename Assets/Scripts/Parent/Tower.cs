@@ -30,9 +30,13 @@ namespace MyDefence {
 
         //타워 등급
         protected int towerLevel = 1;
+        protected int maxLevel = 2;
         public int TowerLevel {
             get { return towerLevel; }
             set { towerLevel = value; }
+        }
+        public int MaxLevel {
+            get { return maxLevel; }
         }
 
         //타워에 붙을 청사진
@@ -106,6 +110,7 @@ namespace MyDefence {
 
             //현재 가장 가까운 대상을 구한다
             foreach (var enemy in Enemies) {
+                if (enemy.GetComponent<EnemyControl>().isArrive) continue;
                 float dist = Vector3.Distance(transform.position, enemy.transform.position);
                 if (min_dist > dist) {
                     min_dist = dist;
@@ -113,15 +118,11 @@ namespace MyDefence {
                 }
             }
 
-            //대상이 존재하지 않거나, 사거리 밖에 존재함
+            //대상이 존재하지 않거나, 사거리 밖에 존재하면 할당 해제
             if (min_dist > attackRange) {
                 target = null;
                 return;
             }
-        }
-
-        public int GetTowerLevel() {
-            return towerLevel;
         }
     }
 }

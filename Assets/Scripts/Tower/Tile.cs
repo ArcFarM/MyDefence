@@ -94,7 +94,7 @@ namespace MyDefence {
         }
 
         public void UpgradeTower() {
-            tb.towerLevel++;
+            tower.GetComponent<Tower>().TowerLevel++;
             //타워 업그레이드 가능 여부 체크
             if (tower == null) {
                 Debug.Log("타워가 존재하지 않아서 업그레이드 불가");
@@ -112,7 +112,7 @@ namespace MyDefence {
             }
 
             //타워 가격만큼 차감
-            PlayerStats.SpendMoney(tb.towerCost);
+            PlayerStats.SpendMoney(tb.upgradeCost);
             //기존 타워 철거 및 타워 설치
             Destroy(tower);
             tower = Instantiate(tb.upgradePrefab, transform.position, Quaternion.identity);
@@ -133,7 +133,7 @@ namespace MyDefence {
             }
             //Debug.Log("Give Money");    
             //판매 금액 지급
-            PlayerStats.GainMoney((int)tb.GetSellValue());
+            PlayerStats.GainMoney((int)GetSellValue());
             Destroy(tower);
             tower = null;
             bm.SetTowerBuild(null);
@@ -145,6 +145,23 @@ namespace MyDefence {
 
         public TowerBluePrint GetTb() {
             return tb;
+        }
+
+        public float GetSellValue() {
+            Tower t = tower.GetComponent<Tower>();
+            float result = tb.towerCost / 2;
+            for (int i = 1; i < t.TowerLevel; i++) {
+                result += tb.upgradeCost / 2;
+            }
+            return result;
+        }
+
+        public Tower GetTower() {
+            if(tower == null) {
+                Debug.Log("타워가 존재하지 않음");
+                return null;
+            }
+            return tower.GetComponent<Tower>();
         }
     }
 }

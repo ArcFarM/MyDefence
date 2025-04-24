@@ -12,15 +12,23 @@ namespace MyDefence {
         public  AnimationClip FadeIn;
         public  AnimationClip FadeOut;
 
-        void Awake() {
-            gameObject.GetComponent<Image>().color = new Color(0, 0, 0, 1); // 검은색으로 초기화
+        void Start() {
+            StartCoroutine(Do_FadeIn());
+        }
+
+        // FadeIn 애니메이션을 재생하는 코루틴
+        public IEnumerator Do_FadeIn() {
+            // FadeIn 상태를 재생
+            animator.SetBool("Fade", false);
+            yield return new WaitForSeconds(1.0f); // FadeIn 애니메이션이 끝날 때까지 대기
+            animator.SetBool("Entry", true);
         }
 
         public IEnumerator Do_FadeOut(string scene_name) {
             // FadeOut 상태를 재생
             animator.SetBool("Fade", true);
 
-            yield return new WaitForSeconds(FadeOut.length);
+            yield return new WaitForSeconds(FadeOut.length + 0.5f);
             if(scene_name != null) {
                 // FadeOut 애니메이션이 끝난 후 씬 전환
                 SceneManager.LoadScene(scene_name);

@@ -9,14 +9,30 @@ namespace MyDefence {
         [SerializeField] private bool isCheat = false;
         [SerializeField] GameObject GameOverWindow;
         [SerializeField] GameObject PauseWindow;
+        [SerializeField] GameObject StageClearWindow;
+        [SerializeField] int level = 1;
 
         public static bool IsGameOver {
             get { return PlayerStats.Life <= 0; }
         }
+        
+        static GameManager instance;
+        public static GameManager Instance {
+            get { return instance; }
+            }
         #endregion
 
+        private void Awake() {
+            if (instance != null) {
+                Destroy(gameObject);
+                return;
+            }
+            instance = this;
+        }
+        
         private void Start() {
             GameOverWindow.SetActive(false);
+            PlayerStats.GetCurrentLevel = level;
         }
 
         private void Update() {
@@ -32,10 +48,6 @@ namespace MyDefence {
             }
             if (Input.GetKeyDown(KeyCode.O) && isCheat) {
                 GameOverDebug();
-            }
-            if(Input.GetKeyDown(KeyCode.Escape)) {
-                //게임 일시정지
-                PauseGame();
             }
         }
 
@@ -63,13 +75,25 @@ namespace MyDefence {
             PlayerStats.LoseLife(10000);
         }
 
+        //public void StageClear()
+
+
         void GameOver() {
             //게임오버 처리
             GameOverWindow.SetActive(true);
         }
 
-        void PauseGame() {
+        public void PauseGame() {
             PauseWindow.SetActive(true);
+        }
+
+        private void OnDisable() {
+            PlayerPrefs.Save();
+        }
+
+        public void LevelClear() {
+            //레벨 클리어 처리
+            StageClearWindow.SetActive(true);
         }
     }
 }
